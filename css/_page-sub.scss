@@ -1,0 +1,1057 @@
+@charset "utf-8";
+
+
+/* =====================================================
+  下層設定
+--------------------------------------------------*/
+/* ▼ 764px以下だったら */
+@media screen and (max-width: 764px) {
+  header{
+    h1{
+      top: 28px;
+    }
+  }
+
+
+  .KV{
+    .KV-img{
+      min-height: 112px !important;
+      img{
+          display: none;
+        }
+    }
+  }
+
+
+  .KV-text {
+    display: none;
+  }
+
+  /*.work .section-title{
+    margin: 104px 48px;
+    
+  }*/
+}
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .section {
+    .container{
+      max-width: 528px;
+    }
+  }
+}
+
+
+/* ===== Scroll Reveal (non-conflicting) ===== */
+:root{
+  --sr-distance: 16px;
+  --sr-duration: 700ms;
+  --sr-ease: cubic-bezier(.2,.7,.2,1);
+}
+.sr, [data-sr]{
+  opacity: 0;
+  transform: translateY(var(--sr-distance));
+  transition:
+    opacity var(--sr-duration) var(--sr-ease),
+    transform var(--sr-duration) var(--sr-ease);
+  will-change: opacity, transform;
+}
+.sr.is-in, [data-sr].is-in{
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce){
+  .sr, [data-sr]{
+    transition: none;
+    transform: none;
+  }
+}
+
+
+.preparation{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 112px 0;
+}
+/* --------------------------------------------------
+  下層設定  END
+=====================================================*/
+
+
+
+
+/* =====================================================
+  Work　共通
+--------------------------------------------------*/
+.section-title{
+  width: 100%;
+  .category{
+    display: flex;
+    align-items: center;
+      span{
+        display: flex;
+        align-items: center;
+        margin: 0 10px 0 0 ;
+      }
+    }
+    .category > span:first-of-type::after{
+      content: "";
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: $sbu-section;
+      border-radius: 100%;
+      margin: 0 0 0 10px;
+  }
+}
+
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .section-title{
+    .category{
+      span{
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+
+/* 概要 */
+.summary_area{
+  position: relative;
+  background: $sbu-line;
+  border-radius: 180px 180px 40px 40px;
+  padding: 0 32px 16px 32px ;
+  margin: 0 0 104px;
+  .badge{
+    top: -20px;
+  }
+  dl{
+    
+    dt{
+      background: $base;
+      border-radius: 10px;
+      text-align: center;
+      margin: 0 0 16px;
+    }
+    dd{
+      margin: 0 0 32px;
+      dl.dl_sbu{
+        border-bottom: none;
+        dt{
+          background: none;
+          text-align: left;
+          margin: 0;
+          font-weight: bold;
+        }
+        dd{
+          white-space: normal;  /* 折り返しを有効に */
+          word-break: break-word; /* 長い単語も強制折り返し */
+          margin: 0 0 16px 14px;
+        }
+      }
+    }
+  }
+  .note{
+    position: relative;
+    padding: 0 0 0 12px;
+    font-size: 9px;
+    line-height: 16px;
+    margin: 4px 0 0 0 ;
+    &::before {
+      content: "※";
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+
+/* ローカルナビ */
+.transition-system{
+  border: 1px solid $border;
+  padding: 40px;
+  border-radius: 50px;
+  margin: 0 32px 168px;
+  .local_nav{
+    .section-title{
+      margin: 0 0 48px 0;
+    }
+    
+  }
+  ul{
+      flex-shrink: 0;
+      li{
+        margin: 0 0 24px 0;
+        color: $main;
+        font-size: 12px;
+        a{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: $text;
+          
+          span{
+            margin: 0 24px 0 0;
+          }
+          .circle-arrow{
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            img{
+              max-width: 40%;
+            }
+          }
+        }
+        &:last-child{
+          margin: 0;
+        }
+      }
+    }
+}
+
+/* ▼ 415px以上だったら */
+@media (min-width: 415px){
+  .transition-system{
+    padding: 48px;
+    margin: 0 0 168px;
+    ul{
+      li{
+        font-size: 14px;
+        a{
+          .circle-arrow{
+            width: 30px;
+            height: 30px;
+            img{
+              max-width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .transition-system{
+  }
+}
+
+/* ▼ 1280px以上だったら */
+@media (min-width: 1280px){
+  .transition-system{
+    margin: 0 auto 168px;
+    .local_nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .section-title{
+      margin: 0;
+      &:before {
+        width: 10px;
+        height: 10px;
+        top: 22px;
+      }
+      .main{
+        font-size: 36px;
+        
+      }
+      .sbu{
+        font-size: 14px;
+      }
+    }
+  }
+  }
+}
+
+/* --------------------------------------------------
+  Work 共通 END
+=====================================================*/
+
+
+
+
+/* =====================================================
+  Work　詳細がある場合
+--------------------------------------------------*/
+/* workスライダー --------------------- */
+.slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible; /* 重要：マスクはwindow側でのみ */
+}
+
+/* 画像表示部分（ここだけマスク） */
+.slider-window {
+  width: 196px;
+  height: auto;
+  overflow: hidden; /* ここで画像部分だけを隠す */
+}
+
+/* スライドの並び */
+.slides {
+  display: flex;
+  transition: transform 0.4s ease;
+  align-items: flex-start;
+}
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .slides {
+    max-height: 800px;
+  }
+}
+
+
+.suggestion .slides {
+  max-height: 500px;
+}
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .suggestion .slides {
+    max-height: 800px;
+  }
+}
+
+/* 1枚分のスライド枠：縮ませない（横切れ防止のキモ） */
+.slide {
+  flex: 0 0 auto;
+  width: 100%; /* ← これが重要 */
+  display: flex;
+  align-items: center;     /* 画像を縦中央 */
+  justify-content: center; /* 画像を横中央 */
+}
+
+/* 画像：中央配置＆はみ出さない＆余白対策 */
+.slide img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* 画像が切れない */
+}
+
+/* 矢印（opacity制御） */
+.arrow-btn {
+  width: 40px;
+  height: 50px;
+  background: #fff;
+  opacity: 0; /* 初期は非表示 */
+  border-radius: 20%;
+  font-size: 28px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease, background 0.2s;
+  pointer-events: none; /* 非表示時はクリック無効 */
+  
+}
+
+
+.arrow-btn.left,
+.arrow-btn.right { position: absolute; }
+.arrow-btn.left { left: clamp(-25px, -8vw, -8px); }
+.arrow-btn.right{ right: clamp(-25px, -8vw, -8px); }
+
+.arrow-btn.visible {
+  opacity: 1;        /* 表示時 */
+  pointer-events: auto; /* クリック有効 */
+}
+
+.arrow-btn:hover { background: #f0f0f0; }
+
+/* ページネーション */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0 56px;
+}
+
+.dot {
+  width: 24px;
+  height: 2px;
+  background: #ccc;
+  border-radius: 2px;
+  transition: background 0.3s, height 0.2s;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #999;
+  height: 4px;
+}
+
+/* キャプション */
+.slider-caption{
+  margin: 8px 0 24px;
+  font-size: 8px;
+  line-height: 1.6;
+  min-height: 1.5em; /* チラつき防止 */
+}
+.slider-caption.is-empty{ display: none; }
+
+/* .slide 内の .caption は画面には出さない（データ置き場用） */
+.slide .caption{
+  position: absolute;
+  width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+
+.section{
+  align-items: center;
+  flex-direction: column;
+  .container.summary{
+    max-width: 100vw;
+  }
+}
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .summary_area{
+    background: none;
+    padding: 0 32px 104px 32px ;
+    margin: 0;
+    .slider_area{
+      background: $sbu-line;
+      border-radius: 250px;
+      padding: 0 0 24px;
+      margin: 0 0 80px;
+    }
+    .slider-window{
+      width: 296px;
+    }
+    .slide{
+      flex: 0 0 296px;
+    }
+    .pagination{
+      margin: 16px 0 0;
+    }
+    dl{
+      --label-w: clamp(8ic, 10ic, 14ic);
+      --gap-x: 24px;
+      --line: #eee;
+      border-bottom: 1px solid $border;
+      display: grid;
+      grid-template-columns: var(--label-w) 1fr;
+      column-gap: var(--gap-x);
+      row-gap: 0;
+      align-items: start;
+      white-space: normal;
+      dt{
+        text-align:left;
+        font-weight: 700;
+      }
+      dd{
+        position: relative;
+      }
+    }
+    dl > dt,
+    dl > dd{
+      padding: 16px 0;
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+    dl > dt + dd::before{
+      content: "";
+      position: absolute;
+      left: calc(-1 * (var(--label-w) + var(--gap-x))); /* 左列＋ギャップぶん左に伸ばす */
+      right: 0;
+      top: 0;
+      height: 1px;
+      background: var(--line);
+    }
+    .dl_sbu{
+      --line: none;
+      display: block;
+      dt{
+        font-weight: 700;
+        margin: 0;
+      }
+      dd{
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+      dt,
+      dd{
+        padding: 0 0 4px;
+      }
+    }
+
+  }
+
+
+  /* キャプション */
+  .slider-caption{
+  font-size: 10px;
+  }
+
+  .suggestion {
+    .img-area {
+      .slide {
+      flex: 0 0 296px !important;
+      }
+    }
+  }
+  .slider-window{
+    width: 296px;
+  }
+}
+
+
+/* ▼ 1200px以上だったら */
+@media (min-width: 1200px){
+
+  .summary_area{
+    margin: 0;
+    .slider_area{
+    }
+    .slider-window{
+    }
+    .slide{
+    }
+    .pagination{
+    }
+    dl{
+      dt{
+      }
+      dd{
+      }
+    }
+    dl > dt,
+    dl > dd{
+    }
+    dl > dt + dd::before{
+    }
+    .dl_sbu{
+        display: grid;
+        grid-template-columns: minmax(80px, 150px) 1fr;
+        gap: 4px 24px;
+      --gap-x: 24px;
+      dt{
+      }
+      dd{
+      }
+      dt,
+      dd{
+      }
+    }
+
+  }
+}
+
+/* ご依頼内容 --------------------- */
+.vertical-writing-title{
+  writing-mode: vertical-rl;
+  font-size: 16px;
+  letter-spacing: 4px;
+  margin: 0 24px 0 0;
+  display: flex;
+  align-items: center;
+  &::before{
+    content: "";
+    display: block;
+    margin: 0 0 16px 0;
+    width: 6px;
+    height: 6px;
+    background: $main;
+    border-radius: 100%;
+  }
+}
+
+
+.container.challenge{
+  max-width: 100vw;
+  padding: 0 16px 0 40px;
+  margin: 0 0 104px;
+}
+
+.challenge_area{
+  display: flex;
+  .details{
+    background: $sbu-section;
+    border-radius: 20px 170px 170px 20px;
+    padding: 48px  56px  48px 32px;
+    ul{
+      li{
+        position: relative;
+        padding: 0 0 0 16px;
+        &::before{
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 9px;
+          width: 4px;
+          height: 4px;
+          background: #FFF;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+
+}
+
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .vertical-writing-title{/*.詳細のあるwork */
+    flex: 1;
+    max-width: 112px;
+    font-size: 20px;
+    letter-spacing: 5px;
+
+  min-height: 320px;
+    &::before{
+      width: 10px;
+      height: 10px;
+      margin: 0 0 26px 0;
+    }
+  }
+  .vertical-writing-title.portfolio{
+    min-height: 390px;
+  }
+  .challenge_area{
+    .details{
+      flex: 1;
+      min-width: 334px;
+      max-width: 468px;
+      p{
+        font-size: 14px;
+        line-height: 28px;
+      }
+      ul{
+        li{
+          font-size: 14px;
+          line-height: 28px;
+        }
+      }
+    }
+  }
+}
+
+/* 工程 --------------------- */
+.process-title{/*.詳細のあるwork */
+  display: flex;
+  justify-content: center;
+  margin: 104px 0 48px;
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 40px;
+    display: block;
+    background: radial-gradient($main 2px, transparent 2px) left center/10px 10px repeat-x;
+    
+  }
+  span{
+    color: $main;
+    border: 2px solid $main;
+    border-radius: 30px;
+    padding: 10px 32px;
+    font-size: 16px;
+    font-weight: 600;
+
+    display: inline-block;
+  line-height: 1;
+  background: #fff;       /* 背景が白想定。透過にしたい場合は削除 */
+  }
+}
+
+
+.flow {
+  width: 100%;
+  max-width: 900px;
+  //margin: 80px auto;
+  padding: 30px 40px;
+  position: relative;
+
+  // 横棒（一本だけ）
+  &__line {
+    position: absolute;
+    top: 32px; // ●の中心に合わせる
+    left: 40px;
+    height: 2px;
+    width: 0%; // アニメ前
+    background: $sbu-section2;
+    transition: width 1s ease-out;
+    border-radius: 2px;
+  }
+
+  // sr.js によって is-in が付いたら棒が伸びる
+  &.is-in {
+    .flow__line {
+      width: calc( 100% - 40px - 40px );
+    }
+  }
+
+  // ステップ全体（数字・●・工程名）
+  &__steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  &__step {
+    text-align: center;
+    position: relative;
+
+    // 数字（1,2,3,4）
+    &__num {
+      font-size: 12px;
+      //font-weight: 700;
+      margin: -50px auto 50px;
+      color: $main;
+      padding-left: 2px;
+    }
+
+    // ●（丸）
+    &::before {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: $main;
+      border-radius: 50%;
+      margin: -2px auto 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    // 工程名
+    &__label {
+      //font-size: 1rem;
+      //font-weight: 600;
+      font-size: 12px;
+      margin-top: 8px;
+      line-height: 12px;
+      writing-mode: vertical-rl; // ← 縦書き
+      text-orientation: upright; // ← 日本語を縦に綺麗に
+    }
+  }
+}
+
+.procedure{
+  .p-group{
+    margin: 0 0 120px;
+  }
+}
+
+.container .suggestion:last-of-type{
+  margin: 0 auto 168px;
+}
+
+.suggestion{
+  background: $sbu-section2;
+  border-radius: 50px;
+  padding: 40px;
+  margin: 0 auto 64px;
+  width: 80%;
+  
+  .title-group{
+    margin: 0 0 40px;
+    p{
+      position: relative;
+      font-size: 10px;
+      font-weight: 600;
+      color: $main-illustration-line;
+      background: #E0F3F6;
+      border-radius: 20px;
+      display: inline-block;
+      padding: 0  10px 0 10px;
+      margin: 0 0 16px 2px;
+      &::before{
+        content: "";
+        display: block;
+        position: absolute;
+        left: -2px;
+        top: 9px;
+        width: 4px;
+        height: 4px;
+        background: $main-illustration-line;
+        border-radius: 100%;
+      }
+    }
+    h4{
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    
+  }
+  .p-group{
+    margin: 0 0 32px;
+    h5{
+      font-size: 14px;
+      margin: 32px 0 8px;
+    }
+    ul{
+      margin: 16px 0;
+      li{
+        position: relative;
+        padding: 0 0 0 16px;
+        &::before{
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 9px;
+          width: 4px;
+          height: 4px;
+          background: $base;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+  .img-area{
+    background: $base;
+    padding: 16px;
+    border-radius: 20px;
+    /*.slide{
+      flex: 0 0 185px;
+      
+    }*/
+    .slider-window{
+        height: auto;
+      }
+    .pagination{
+      margin: 0;
+    }
+    .arrow-btn{
+      width: 30px;
+      height: 40px;
+      img{
+        width: 12px;
+      }
+    }
+    .arrow-btn.left {
+      left: clamp(-30px, -8vw, -8px);
+    }
+    .arrow-btn.right {
+    right: clamp(-30px, -8vw, -8px);
+    }
+  }
+
+}
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .procedure{
+    .p-group{
+      p{
+        font-size: 14px;
+        line-height: 28px;
+      }
+    }
+  }
+  .suggestion {
+    .title-group{
+      p{
+        font-size: 11px;
+      }
+      h4{
+        font-size: 16px;
+        line-height: 30px;
+      }
+    }
+    .p-group{
+      p{
+        font-size: 14px;
+        line-height: 28px;
+      }
+      ul{
+        li{
+          font-size: 14px;
+          line-height: 28px;
+        }
+      }
+    }
+  }
+
+  .flow {
+  padding: 30px 48px;
+
+  // 横棒（一本だけ）
+  &__line {
+    left: 50px;
+  }
+
+  &.is-in {
+    .flow__line {
+      width: calc( 100% - 50px - 50px );
+    }
+  }
+
+  // ステップ全体（数字・●・工程名）
+  &__steps {
+  }
+
+  &__step {
+
+    // 数字（1,2,3,4）
+    &__num {
+      font-size: 14px;
+      padding-left: 4px;
+    }
+
+    // ●（丸）
+    &::before {
+    }
+
+    // 工程名
+    &__label {
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+}
+}
+
+/* ▼ 1200px以上だったら */
+@media (min-width: 1200px){
+  .flow {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+/* --------------------------------------------------
+  Work 詳細のあるwork END
+=====================================================*/
+
+
+
+
+/* =====================================================
+  Work　NDA
+--------------------------------------------------*/
+.work-section{
+  width: 100%;
+  padding-left: clamp(16px, 6vw, 88px);
+  padding-right: clamp(16px, 6vw, 64px);
+  margin-top: clamp(32px, 10vw, 120px);
+}
+
+/* ▼ 415px以上だったら */
+@media (min-width: 415px){
+  .work-section{
+    margin-top: clamp(80px, 10vw, 120px);
+  }
+}
+
+/* 簡易な概要 --------------------- */
+.brief_overview_area{
+  margin-bottom: 168px;
+  .p-group{
+    padding: 0 40px;
+    p{
+      font-size: 14px;
+      line-height: 28px;
+    }
+    p.NDA_text{
+      background: $sbu-line;
+      padding: 32px;
+      border-radius: 50px;
+      margin: 32px 0 0;
+    }
+  }
+}
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .brief_overview_area{
+  .p-group{
+    padding: 0;
+    p{
+    }
+    p.NDA_text{
+      margin: 16px 0 0;
+    }
+  }
+}
+}
+/* --------------------------------------------------
+  Work NDA END
+=====================================================*/
+
+
+
+/* =====================================================
+  modal
+--------------------------------------------------*/
+.img-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(224, 243, 246, 0.7);
+  opacity: 0;                 // 初期は透明
+  visibility: hidden;         // 初期は非表示
+  transition: opacity 0.5s ease;
+  z-index: 9999;
+
+  // ★ display は常に flex（ここが最重要）
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10vh;
+
+  &.show {
+    opacity: 1;               // フェードイン
+    visibility: visible;      // 表示
+  }
+
+  .img-modal-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .img-wrap {
+    position: relative;
+    z-index: 2;
+    width: 80vw;
+    max-width: 80vw;
+    height: 80vh;
+    overflow: auto;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      max-height: none;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .img-close {
+    position: absolute;
+    top: 4vh;
+    right: 4vw;
+    z-index: 3;
+    font-size: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $main-illustration-line;
+  }
+}
+
+.open_modal{
+  cursor: pointer;
+}
+
+/* --------------------------------------------------
+  modal END
+=====================================================*/

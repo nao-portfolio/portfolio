@@ -1,0 +1,474 @@
+@charset "utf-8";
+
+/* =====================================================
+   KV
+--------------------------------------------------*/
+.KV{
+    .KV-img-short{
+      min-height: 397px;
+      img{
+        display: block;
+        bottom: -1.7rem;
+      }
+    }
+    .KV-img-long{
+    }
+  }
+
+/* --------------------------------------------------
+   KV END
+=====================================================*/
+
+
+
+
+/* =====================================================
+   About me
+--------------------------------------------------*/
+.about-me{
+  //
+  .profile {
+    background: $sbu-section;
+    border-radius: 0 100px 100px 0;
+    padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 48px);
+    //margin: 0 48px 0 0;
+    margin: 100px auto;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1s ease, transform 1s ease;
+    overflow: visible;
+    }
+    .profile.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .profile{
+      .about-decoration-top {
+        position: absolute;
+        top: -100px;
+        left: 0;
+        width: 100px; /* SVGサイズに応じて調整 */
+        height: auto;
+        z-index: 1;
+        pointer-events: none; /* クリックなど無効化（装飾目的のため） */
+      }
+      .about-decoration-bottom {
+        position: absolute;
+        bottom: -100px;
+        left: 0;
+        width: 100px; /* SVGサイズに応じて調整 */
+        height: auto;
+        z-index: 1;
+        pointer-events: none; /* クリックなど無効化（装飾目的のため） */
+      }
+    }
+    .profile{
+      .profile-phot{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 0 24px;
+        img{
+          margin: 0 0 8px;
+        }
+        .name{
+          background: $main;
+          color: $base;
+          padding: 2px 16px;
+          display: inline-block;
+          text-align: center;
+          margin: 0 auto;
+          border-radius: 20px;
+        }
+      }
+      p{
+        font-size: 13px;
+      }
+    .skil{
+      dt{
+        background: $sbu-section2;
+        display: inline-block;
+        border-radius: 20px;
+        padding: 4px 16px;
+        margin: 16px 0 0;
+        z-index: 2;
+      }
+      dd{
+        background: $base;
+        padding: 20px 16px 16px;
+        border-radius: 0px 42px 42px 42px;
+        margin: -14px 0 0;
+        z-index: 1;
+      }
+    }
+  }
+
+  .history{
+  }
+}
+
+.section {
+  .container{
+    max-width: 82%;
+  }
+}
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .about-me{
+    padding: 0 !important;
+  }
+
+  .section {
+    .container{
+      max-width: min(92vw, 624px);
+      padding-left: clamp(32px, 5vw, 48px);
+      padding-right: clamp(32px, 5vw, 48px);
+      .desktop-support{
+        display: flex;
+        .text-group{
+          max-width: 256px;
+          p{
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  .profile{
+    background: $sbu-section;
+    border-radius: 0 100px 100px 0;
+    margin: 100px auto;
+    overflow: visible;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important; // アニメ停止
+    position: relative;
+    .about-decoration-top,
+    .about-decoration-bottom {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .profile-phot{
+      margin: 0 24px 24px 0 !important;
+    }
+  }
+  .profile-inner {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+}
+/* --------------------------------------------------
+   About me END
+=====================================================*/
+
+.timeline {
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.timeline.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item {
+  position: relative;
+  margin: 0 0 clamp(48px, 8vw, 84px);
+  z-index: 0; /* dotより前面 */
+  display: flex;
+  align-items: center;
+  &:last-of-type {
+    margin: 0 0 0px;
+  }
+  img{
+    width: clamp(100px, 15vw, 188px);
+    height: auto;
+  }
+  
+}
+
+.timeline-item:nth-child(odd){
+  figcaption{
+    margin: 0 0 0 clamp(24px, 3vw, 64px);
+  }
+}
+.timeline-item:nth-child(even){
+  img{
+    margin: 0 0 0 clamp(24px, 3vw, 64px);
+  }
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: $sbu-section2;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  z-index: -1;
+}
+
+.dot.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .timeline-item{
+    .text{
+      flex: 1;
+    }
+  }
+}
+
+
+
+/* =====================================================
+   Work
+--------------------------------------------------*/
+.image-area {
+  position: relative;
+  a{
+    background: #f5f5f5;
+    border-radius: 265px;
+    height: 225px;
+    display: block;
+    position: relative;
+    width: 100%;
+  aspect-ratio: 1 / 1; // ← 幅と高さを同じに保つ
+  margin: 0 auto;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: #f5f5f5;
+      border-radius: 265px;
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform 0.3s cubic-bezier(0.3, 1.5, 0.5, 1.2);
+      z-index: 0;
+    }
+    &:hover::after {
+      transform: translate(-50%, -50%) scale(1.2);
+      background: $icon;
+      opacity: .2;
+    }
+  }
+}
+
+  .img-2set-pc,
+  .img-2set-sp,
+  .img-single-sp,
+  .img-single-pc {
+    z-index: 1;
+    position: absolute;
+    bottom: 30px;
+    background-color: rgb(249 250 251/var(--tw-bg-opacity));
+    --tw-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+  }
+
+
+/*.img-main {*/
+.img-2set-pc{
+  background: #ccc;
+  width: 80%;
+  height: auto;
+  left: 50%;
+  margin-left: -45%;
+  border: 1px solid $base;
+  border-bottom: none;
+}
+
+.img-single-pc{
+  width: 80%;
+  height: auto;
+  left: 50%;
+  margin-left: -40%;
+}
+
+.img-single-sp{
+      left: 50%;
+      bottom: clamp(8px, 1.5vw, 16px);
+      width:  clamp(143px, 22vw, 215px);
+      height: clamp(265px, 42vw, 399px);
+      transform: translateX(clamp(-55%, -48%, -40%));
+}
+.img-2set-sp {
+  width: 25%;
+  
+  right: 0;
+  height: auto;
+  background: #ddd;
+  border: 1px solid $base;
+  border-bottom: none;
+}
+
+
+
+.card-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin: 0 0 72px;
+  &:last-of-type{
+    margin: 0;
+  }
+  .tag {
+    font-size: 10px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    line-height: 24px;
+  }
+}
+
+.card-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.more {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+}
+
+
+.ripple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;/* 画面いっぱいに広げる */
+  height: 100px;/* 画面いっぱいに広げる */
+  background: rgba(248, 155, 127, 0.7);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 9999;
+  animation: ripple-expand 1.5s ease-out forwards;
+}
+
+@keyframes ripple-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(30);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(35);
+    opacity: 0;
+  }
+}
+
+.tag-group{
+  font-size: 10px;
+  line-height: 18px;
+  span{
+    margin: 0 16px 0 0;
+    display: inline-block;
+  }
+}
+
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px){
+  .image-area {
+    margin: 0 0 16px;
+    a{
+      height: clamp(265px, 30vw, 400px);
+    }
+    .img-main.img-single{
+      left: 101px;
+    }
+    .img-sub{
+      width: 100px;
+      height: 226px;
+      right: 24px;
+    }
+  }
+
+  
+  .card-content {
+  margin: 0 0 clamp(72px, 8vw, 120px);
+}
+
+  .tag-group{
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .circle-arrow{
+width: 40px;
+height: 40px;
+  }
+
+  .circle-link {
+  font-size: 14px;
+  /* 親ホバー／フォーカス／アクティブで矢印を拡大 */
+  &:hover .circle-arrow,
+  &:focus-visible .circle-arrow,
+  &:active .circle-arrow {
+    transform: scale(1.4);
+  }
+}
+
+}
+
+
+/* 764px〜1000pxの間だけレイアウトを可変化して崩れ防止 */
+@media (min-width: 764px) and (max-width: 1000px) {
+
+  /* サブ画像：可変幅/高さ＆位置 */
+  .img-sub {
+    right:  clamp(16px, 3vw, 24px);
+    bottom: clamp(20px, 3vw, 32px);
+  }
+  
+
+  /* シングル配置（img-single）も中央寄せ */
+  .img-main.img-single {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+
+  /* テキスト群の行間とタグも少し余裕を持たせる */
+  .tag-group {
+    font-size: clamp(10px, 1.2vw, 12px);
+    line-height: clamp(18px, 2.4vw, 20px);
+  }
+}
+/* --------------------------------------------------
+   Work END
+=====================================================*/
+
+
+

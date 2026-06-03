@@ -1,0 +1,188 @@
+@charset "UTF-8";
+body {
+  color: #36373B;
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 12px;
+}
+
+h2, h3, h4, div, ul, ol, a, p, figcaption {
+  line-height: 24px;
+}
+
+.my-KV h2 {
+  font-size: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* ▼ 763px以下だったら */
+@media screen and (max-width: 763px) {
+  .my-sp {
+    display: hidden;
+  }
+  .my-desktop {
+    display: none;
+  }
+  .menu-trigger,
+  .menu__close {
+    position: absolute;
+    top: 40px;
+    right: 42px;
+    width: 104px;
+    height: 33px;
+    border-radius: 17px;
+    font-weight: bold;
+    text-align: left;
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Hiragino Sans", Meiryo, sans-serif;
+    padding: 16px 8px;
+    background: #FFF;
+    line-height: 0;
+    color: #B2DEE3;
+    cursor: pointer;
+  }
+  .menu-trigger:before, .menu-trigger:after,
+  .menu__close:before,
+  .menu__close:after {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: #B2DEE3;
+    position: absolute;
+    right: 16px;
+    display: block;
+  }
+  .menu-trigger {
+    text-transform: uppercase;
+    color: #B2DEE3;
+    /*width: 42px;
+    height: 42px;*/
+    /*&:before, &:after {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: $sbu-section;
+      position: absolute;
+      right: 16px;
+      display: block;
+    }*/
+  }
+  .menu-trigger:before {
+    top: 8px;
+  }
+  .menu-trigger:after {
+    bottom: 8px;
+  }
+  .menu {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  .menu__bg {
+    position: absolute;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: #B2DEE3;
+  }
+  .menu__bg--active {
+    animation-name: menubg;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  .menu__container {
+    position: absolute;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.5;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  .menu__container--active {
+    animation-name: menufg;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  .menu__container ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .menu__container a {
+    display: inline-block;
+    transition: all 0.2s;
+    color: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Hiragino Sans", Meiryo, sans-serif;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  .menu__container a:hover {
+    background: #FFF;
+    color: #B2DEE3;
+  }
+  .menu__close {
+    /*&:before, &:after {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: $sbu-section;
+      position: absolute;
+      right: 16px;
+      display: block;
+    }*/
+  }
+  .menu__close:before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  .menu__close:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  @keyframes menubg {
+    0% {
+      opacity: 0;
+      width: 32px;
+      height: 32px;
+    }
+    10% {
+      opacity: 1;
+      width: 32px;
+      height: 32px;
+    }
+    100% {
+      opacity: 1;
+      width: 5000px;
+      height: 5000px;
+    }
+  }
+  @keyframes menufg {
+    0% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+/* ▼ 764px以上だったら */
+@media (min-width: 764px) {
+  .menu-mobile {
+    display: none !important;
+  }
+  .my-sp {
+    display: none !important;
+  }
+  .my-desktop {
+    display: hidden;
+  }
+}/*# sourceMappingURL=base.css.map */
