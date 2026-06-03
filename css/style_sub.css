@@ -394,7 +394,7 @@ header h1 {
   font-size: 24px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
-  margin: 0 0 72px 0;
+  margin: 0 0 56px 0;
 }
 .menu__container .content-title small {
   font-size: 11px;
@@ -402,7 +402,7 @@ header h1 {
   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Hiragino Sans", Meiryo, sans-serif;
 }
 .menu__container .content-title ol {
-  margin: 72px 0 0 28px;
+  margin: 56px 0 0 28px;
 }
 .menu__container .content-title a {
   padding: 0 0 0 26px;
@@ -1899,7 +1899,7 @@ footer {
   padding: 0 40px;
 }
 .brief_overview_area .p-group p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 28px;
 }
 .brief_overview_area .p-group p.NDA_text {
@@ -1913,6 +1913,9 @@ footer {
 @media (min-width: 764px) {
   .brief_overview_area .p-group {
     padding: 0;
+  }
+  .brief_overview_area .p-group p {
+    font-size: 14px;
   }
   .brief_overview_area .p-group p.NDA_text {
     margin: 16px 0 0;
