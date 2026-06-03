@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // KV出現 ------------------------------------------------------------------
-(function () {
+/*(function () {
   // アニメさせる“可動系”だけに限定（side-menu / menu-trigger は対象外）
   const TARGETS = [
     ['header h1',           0],
@@ -320,6 +320,136 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 120);
   }, { passive: true });
 })();
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    document.querySelectorAll('.ani-home-mv').forEach(el => {
+      el.classList.add('isView');
+    });
+    init();
+  }
+});*/
+(function () {
+  const TARGETS = [
+    ['header h1', 0],
+    ['.KV-img .hero-img', 0],
+    ['.KV-text', 400],
+    ['.menu-trigger.menu-mobile', 800],
+    ['.side-menu', 800]
+  ];
+
+  let io = null;
+
+  function cleanup() {
+    if (io) { try { io.disconnect(); } catch (_) {} }
+    io = null;
+  }
+
+  function prime(el) {
+    if (!el) return;
+    if (!el.classList.contains('ani-home-mv')) {
+      el.classList.add('ani-home-mv');
+    }
+  }
+
+  function inViewport(el) {
+    const r = el.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    return r.bottom >= 0 && r.right >= 0 && r.top <= vh && r.left <= vw;
+  }
+
+  function reveal(el, delay) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (typeof delay === 'number' && delay > 0) {
+          setTimeout(() => el.classList.add('isView'), delay);
+        } else {
+          el.classList.add('isView');
+        }
+      });
+    });
+  }
+
+  function init() {
+    cleanup();
+
+    // JS初期化完了 → フェード制御を有効化
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.body.classList.add('js-inited');
+      });
+    });
+
+    const items = TARGETS.map(([sel, delay]) => {
+      const el = document.querySelector(sel);
+      if (!el) return null;
+      prime(el);
+      return { el, delay };
+    }).filter(Boolean);
+
+    if (!items.length) return;
+
+    io = new IntersectionObserver((entries) => {
+      entries.forEach(({ isIntersecting, target }) => {
+        if (!isIntersecting) return;
+        const def = TARGETS.find(([sel]) => target.matches(sel));
+        const delay = def ? def[1] : 0;
+        reveal(target, delay);
+        try { io.unobserve(target); } catch (_) {}
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+
+    items.forEach(({ el, delay }) => {
+      try { io.observe(el); } catch (_) {}
+      if (inViewport(el)) {
+        reveal(el, delay);
+        try { io.unobserve(el); } catch (_) {}
+      }
+    });
+  }
+
+  // 初回ロード
+  if (document.readyState === 'complete') init();
+  else window.addEventListener('load', init, { once: true });
+
+  // ★ bfcache復元時：まず即表示 → その後 init（順番が最重要）
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+      document.querySelectorAll('.ani-home-mv').forEach(el => {
+        el.classList.add('isView'); // 即表示でチラつき防止
+      });
+      init(); // その後に初期化
+    }
+  });
+
+  // visibilitychange（Safari対策）
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      const missing = TARGETS.some(([sel]) => {
+        const el = document.querySelector(sel);
+        return el && !el.classList.contains('isView');
+      });
+      if (missing) init();
+    }
+  });
+
+  // レイアウト変化時の救済
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      TARGETS.forEach(([sel, delay]) => {
+        const el = document.querySelector(sel);
+        if (el && !el.classList.contains('isView') && inViewport(el)) {
+          reveal(el, delay);
+          try { io && io.unobserve(el); } catch (_) {}
+        }
+      });
+    }, 120);
+  }, { passive: true });
+
+})();
+
 
 
 
