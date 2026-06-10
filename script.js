@@ -328,7 +328,7 @@ window.addEventListener('pageshow', (e) => {
     init();
   }
 });*/
-(function () {
+/*(function () {
   const TARGETS = [
     ['header h1', 0],
     ['.KV-img .hero-img', 0],
@@ -447,6 +447,96 @@ window.addEventListener('pageshow', (e) => {
       });
     }, 120);
   }, { passive: true });
+
+})();*/
+(function () {
+  const TARGETS = [
+    ['header h1', 0],
+    ['.KV-img .hero-img', 0],
+    ['.KV-text', 400],
+    ['.menu-trigger.menu-mobile', 800],
+    ['.side-menu', 800]
+  ];
+
+  let io = null;
+
+  function cleanup() {
+    if (io) { try { io.disconnect(); } catch (_) {} }
+    io = null;
+  }
+
+  function prime(el) {
+    if (!el) return;
+    if (!el.classList.contains('ani-home-mv')) {
+      el.classList.add('ani-home-mv');
+    }
+  }
+
+  function inViewport(el) {
+    const r = el.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    return r.bottom >= 0 && r.right >= 0 && r.top <= vh && r.left <= vw;
+  }
+
+  function reveal(el, delay) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (typeof delay === 'number' && delay > 0) {
+          setTimeout(() => el.classList.add('isView'), delay);
+        } else {
+          el.classList.add('isView');
+        }
+      });
+    });
+  }
+
+  function init() {
+    cleanup();
+
+    // ★ ここで js-inited を付ける（ani-home-mv を付けた後）
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.body.classList.add('js-inited');
+      });
+    });
+
+    const items = TARGETS.map(([sel, delay]) => {
+      const el = document.querySelector(sel);
+      if (!el) return null;
+      prime(el);
+      return { el, delay };
+    }).filter(Boolean);
+
+    if (!items.length) return;
+
+    io = new IntersectionObserver((entries) => {
+      entries.forEach(({ isIntersecting, target }) => {
+        if (!isIntersecting) return;
+        const def = TARGETS.find(([sel]) => target.matches(sel));
+        const delay = def ? def[1] : 0;
+        reveal(target, delay);
+        try { io.unobserve(target); } catch (_) {}
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+
+    items.forEach(({ el, delay }) => {
+      try { io.observe(el); } catch (_) {}
+      if (inViewport(el)) {
+        reveal(el, delay);
+        try { io.unobserve(el); } catch (_) {}
+      }
+    });
+  }
+
+  // 初回ロード
+  if (document.readyState === 'complete') init();
+  else window.addEventListener('load', init, { once: true });
+
+  // bfcache でも毎回フェードイン
+  window.addEventListener('pageshow', () => {
+    init();
+  });
 
 })();
 
