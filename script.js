@@ -197,6 +197,137 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // KV出現 ------------------------------------------------------------------
+/*(function () {
+  // アニメさせる“可動系”だけに限定（side-menu / menu-trigger は対象外）
+  const TARGETS = [
+    ['header h1',           0],
+    ['.KV-img .hero-img',   0],
+    ['.KV-text',            400],
+    ['.menu-trigger.menu-mobile', 800], // SP用メニューボタン
+    ['.side-menu',                 800] // PC用サイドメニュー
+  ];
+
+  let io = null;
+
+  function cleanup() {
+    if (io) { try { io.disconnect(); } catch (_) {} }
+    io = null;
+  }
+
+  // 指定要素に ani-home-mv を（まだ付いてなければ）付与
+  function prime(el) {
+    if (!el) return;
+    if (!el.classList.contains('ani-home-mv')) {
+      el.classList.add('ani-home-mv');
+    }
+  }
+
+  // 画面内判定
+  function inViewport(el) {
+    const r = el.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    return r.bottom >= 0 && r.right >= 0 && r.top <= vh && r.left <= vw;
+  }
+
+  // 安定表示（ダブルRAFで描画確定後に isView 付与）
+  function reveal(el, delay) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (typeof delay === 'number' && delay > 0) {
+          setTimeout(() => el.classList.add('isView'), delay);
+        } else {
+          el.classList.add('isView');
+        }
+      });
+    });
+  }
+
+  function init() {
+    cleanup();
+
+    // 1) 初期化フェーズ：まず body に js-inited を付ける（この瞬間から初期opacityが効く）
+    //    いきなり付けるとFCPと競合することがあるのでダブルRAF
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.body.classList.add('js-inited');
+      });
+    });
+
+    // 2) 対象に ani-home-mv を付けて監視開始
+    const items = TARGETS.map(([sel, delay]) => {
+      const el = document.querySelector(sel);
+      if (!el) return null;
+      prime(el);
+      return { el, delay };
+    }).filter(Boolean);
+
+    if (!items.length) return;
+
+    io = new IntersectionObserver((entries) => {
+      entries.forEach(({ isIntersecting, target }) => {
+        if (!isIntersecting) return;
+        const def = TARGETS.find(([sel]) => target.matches(sel));
+        const delay = def ? def[1] : 0;
+        reveal(target, delay);
+        try { io.unobserve(target); } catch (_) {}
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+
+    items.forEach(({ el, delay }) => {
+      try { io.observe(el); } catch (_) {}
+      // すでに画面内なら即表示（delayは尊重）
+      if (inViewport(el)) {
+        reveal(el, delay);
+        try { io.unobserve(el); } catch (_) {}
+      }
+    });
+  }
+
+  // 初回は load 後（レイアウト安定）に実行
+  if (document.readyState === 'complete') init();
+  else window.addEventListener('load', init, { once: true });
+
+  // bfcache 復元でも再初期化（戻る/進む）
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) init();
+  });
+
+  // まれな復元パスの保険
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      // どれか未表示なら再初期化
+      const missing = TARGETS.some(([sel]) => {
+        const el = document.querySelector(sel);
+        return el && !el.classList.contains('isView');
+      });
+      if (missing) init();
+    }
+  });
+
+  // レイアウト切替の救済
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      TARGETS.forEach(([sel, delay]) => {
+        const el = document.querySelector(sel);
+        if (el && !el.classList.contains('isView') && inViewport(el)) {
+          reveal(el, delay);
+          try { io && io.unobserve(el); } catch (_) {}
+        }
+      });
+    }, 120);
+  }, { passive: true });
+})();
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    document.querySelectorAll('.ani-home-mv').forEach(el => {
+      el.classList.add('isView');
+    });
+    init();
+  }
+});*/
 (function () {
   const TARGETS = [
     ['header h1', 0],
@@ -242,6 +373,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function init() {
     cleanup();
 
+    // JS初期化完了 → フェード制御を有効化
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.body.classList.add('js-inited');
+      });
+    });
+
     const items = TARGETS.map(([sel, delay]) => {
       const el = document.querySelector(sel);
       if (!el) return null;
@@ -274,17 +412,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.readyState === 'complete') init();
   else window.addEventListener('load', init, { once: true });
 
-  // bfcache復元時：まず即表示 → その後 init
+  // ★ bfcache復元時：まず即表示 → その後 init（順番が最重要）
   window.addEventListener('pageshow', (e) => {
     if (e.persisted) {
       document.querySelectorAll('.ani-home-mv').forEach(el => {
-        el.classList.add('isView');
+        el.classList.add('isView'); // 即表示でチラつき防止
       });
-      init();
+      init(); // その後に初期化
     }
   });
 
-  // Safari対策
+  // visibilitychange（Safari対策）
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
       const missing = TARGETS.some(([sel]) => {
