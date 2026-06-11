@@ -426,6 +426,7 @@ header h1 {
   margin: 0 0 0 20px;
   color: #fff;
   font-weight: 700;
+  display: block;
 }
 .menu__container .project-name a {
   padding: 0 0 0 20px;
