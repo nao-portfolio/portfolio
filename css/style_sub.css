@@ -419,8 +419,13 @@ header h1 {
 }
 .menu__container .project-name {
   font-size: 14px;
-  line-height: 26px;
+  line-height: 22px;
   margin: 0 0 32px 0;
+}
+.menu__container .project-name span {
+  margin: 0 0 0 20px;
+  color: #fff;
+  font-weight: 700;
 }
 .menu__container .project-name a {
   padding: 0 0 0 20px;
@@ -430,12 +435,13 @@ header h1 {
 .menu__container .project-name a::before {
   content: "";
   position: absolute;
-  top: 8px;
+  top: 50%;
   left: 0;
   width: 6px;
   height: 6px;
   border-radius: 5px;
   background: #D2ECF0;
+  margin: -6px 0 0 0;
 }
 .menu__container .project-name a .text {
   flex: 1;
