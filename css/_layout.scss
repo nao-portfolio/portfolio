@@ -131,7 +131,9 @@ a:hover{
     font-size: 26px;
     line-height: 30px;
     font-family: $font-title;
-    font-weight: 400;
+    //font-weight: 400;
+    font-weight: 300;
+    letter-spacing: 0.1em;
   }
   .sbu{
     font-size: 12px;
@@ -212,7 +214,7 @@ header,
       font-size: 44px;
       line-height: 51px;
       font-weight: 200;
-      padding: 0 0 4px;
+      padding: 0 0 16px;
       display: inline-block;
     }
     .sbu{

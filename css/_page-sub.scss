@@ -536,10 +536,10 @@
     dl > dt + dd::before{
     }
     .dl_sbu{
-        display: grid;
+      /*  display: grid;
         grid-template-columns: minmax(80px, 150px) 1fr;
         gap: 4px 24px;
-      --gap-x: 24px;
+      --gap-x: 24px;*/
       dt{
       }
       dd{
