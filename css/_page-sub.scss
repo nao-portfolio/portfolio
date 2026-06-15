@@ -151,7 +151,10 @@
         dd{
           white-space: normal;  /* 折り返しを有効に */
           word-break: break-word; /* 長い単語も強制折り返し */
-          margin: 0 0 16px 14px;
+          margin: 0 0 16px 28px;
+        }
+        dd:last-child{
+          margin: 0 0 0 28px;
         }
       }
     }

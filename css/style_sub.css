@@ -249,6 +249,103 @@ header,
   transform: scale(1.3);
 }
 
+[class^=icon__] {
+  position: relative;
+  padding: 0 0 0 28px;
+  display: inline-block;
+  margin: 0 24px 0 0;
+}
+[class^=icon__]::before {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  left: 0;
+  content: "";
+}
+
+.icon__analysis::before {
+  background: url(../work/img/icon_analysis.svg);
+  background-size: 100% 100%;
+}
+
+.icon__banner::before {
+  background: url(../work/img/icon_banner.svg);
+  background-size: 100% 100%;
+}
+
+.icon__coding::before {
+  background: url(../work/img/icon_coding.svg);
+  background-size: 100% 100%;
+}
+
+.icon__company::before {
+  background: url(../work/img/icon_company.svg);
+  background-size: 100% 100%;
+}
+
+.icon__content::before {
+  background: url(../work/img/icon_content.svg);
+  background-size: 100% 100%;
+}
+
+.icon__designSystem::before {
+  background: url(../work/img/icon_designSystem.svg);
+  background-size: 100% 100%;
+}
+
+.icon__routine::before {
+  background: url(../work/img/icon_routine.svg);
+  background-size: 100% 100%;
+}
+
+.icon__ux::before {
+  background: url(../work/img/icon_ux.svg);
+  background-size: 100% 100%;
+}
+
+.icon__webDesign::before {
+  background: url(../work/img/icon_webDesign.svg);
+  background-size: 100% 100%;
+}
+
+.icon__wf::before {
+  background: url(../work/img/icon_wf.svg);
+  background-size: 100% 100%;
+}
+
+.icon__wordpress::before {
+  background: url(../work/img/icon_wordpress.svg);
+  background-size: 100% 100%;
+}
+
+.icon__direction::before {
+  background: url(../work/img/icon_direction.svg);
+  background-size: 100% 100%;
+}
+
+.icon__edit::before {
+  background: url(../work/img/icon_edit.svg);
+  background-size: 100% 100%;
+}
+
+/* ▼ 764px以上だったら */
+@media (min-width: 764px) {
+  [class^=icon__]::before {
+    width: 20px;
+    height: 20px;
+    top: 4px;
+  }
+  .summary_area dl > dd [class^=icon__] {
+    line-height: 2.5;
+  }
+  .summary_area dl dd dl.dl_sbu dt [class^=icon__] {
+    line-height: 2;
+  }
+  .summary_area dl dd dl.dl_sbu dt [class^=icon__]::before {
+    top: 0;
+  }
+}
 /* --------------------------------------------------
    共通 END
 =====================================================*/
@@ -1256,7 +1353,10 @@ footer {
 .summary_area dl dd dl.dl_sbu dd {
   white-space: normal; /* 折り返しを有効に */
   word-break: break-word; /* 長い単語も強制折り返し */
-  margin: 0 0 16px 14px;
+  margin: 0 0 16px 28px;
+}
+.summary_area dl dd dl.dl_sbu dd:last-child {
+  margin: 0 0 0 28px;
 }
 .summary_area .note {
   position: relative;
