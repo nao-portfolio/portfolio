@@ -1376,9 +1376,9 @@ footer {
 /* ローカルナビ */
 .transition-system {
   border: 1px solid #e5e7eb;
-  padding: 40px;
+  padding: 32px;
   border-radius: 50px;
-  margin: 0 32px 168px;
+  margin: 0 0 168px;
 }
 .transition-system .local_nav .section-title {
   margin: 0 0 48px 0;
@@ -1396,6 +1396,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   color: #36373B;
+  line-height: 1.5;
 }
 .transition-system ul li a span {
   margin: 0 24px 0 0;
@@ -1418,9 +1419,6 @@ footer {
     padding: 48px;
     margin: 0 0 168px;
   }
-  .transition-system ul li {
-    font-size: 14px;
-  }
   .transition-system ul li a .circle-arrow {
     width: 30px;
     height: 30px;
@@ -1430,6 +1428,17 @@ footer {
   }
 }
 /* ▼ 764px以上だったら */
+@media (min-width: 764px) {
+  .transition-system {
+    margin: 0 32px 168px;
+  }
+  .transition-system ul li {
+    font-size: 14px;
+  }
+  .transition-system ul li a {
+    line-height: 24px;
+  }
+}
 /* ▼ 1280px以上だったら */
 @media (min-width: 1280px) {
   .transition-system {

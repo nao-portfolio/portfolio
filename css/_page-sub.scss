@@ -179,9 +179,9 @@
 /* ローカルナビ */
 .transition-system{
   border: 1px solid $border;
-  padding: 40px;
+  padding: 32px;
   border-radius: 50px;
-  margin: 0 32px 168px;
+  margin: 0 0 168px;
   .local_nav{
     .section-title{
       margin: 0 0 48px 0;
@@ -199,7 +199,7 @@
           align-items: center;
           justify-content: space-between;
           color: $text;
-          
+          line-height: 1.5;
           span{
             margin: 0 24px 0 0;
           }
@@ -226,7 +226,7 @@
     margin: 0 0 168px;
     ul{
       li{
-        font-size: 14px;
+        //font-size: 14px;
         a{
           .circle-arrow{
             width: 30px;
@@ -244,6 +244,19 @@
 /* ▼ 764px以上だったら */
 @media (min-width: 764px){
   .transition-system{
+    margin: 0 32px 168px;
+    ul{
+      li{
+        font-size: 14px;
+        a{
+          line-height: 24px;
+          .circle-arrow{
+            img{
+            }
+          }
+        }
+      }
+    }
   }
 }
 
