@@ -862,7 +862,7 @@ body.js-inited .fade-in.visible {
   position: relative;
 }
 .KV-text h2 .KV-label.short {
-  background-image: url("../img/KV_bg_short.svg");
+  background-image: url("../img/KV_bg_short.png");
   margin: 0 0 16px 0;
 }
 .KV-text h2 .KV-label.short::before {
@@ -875,7 +875,7 @@ body.js-inited .fade-in.visible {
   background-image: url("../img/quotient.svg");
 }
 .KV-text h2 .KV-label.long {
-  background-image: url("../img/KV_bg_long.svg");
+  background-image: url("../img/KV_bg_long.png");
 }
 .KV-text h2 .KV-label.long::after {
   position: absolute;

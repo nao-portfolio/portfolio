@@ -889,7 +889,7 @@ body.js-inited .fade-in.visible {
         }
 
         .KV-label.short {
-          background-image: url("../img/KV_bg_short.svg");
+          background-image: url("../img/KV_bg_short.png");
           margin: 0 0 16px 0;
           &::before{
             position: absolute;
@@ -902,7 +902,7 @@ body.js-inited .fade-in.visible {
           }
         }
         .KV-label.long {
-          background-image: url("../img/KV_bg_long.svg");
+          background-image: url("../img/KV_bg_long.png");
           &::after{
             position: absolute;
             content: '';
