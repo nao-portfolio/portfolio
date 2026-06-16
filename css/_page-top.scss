@@ -398,7 +398,7 @@
     color: #a1a1a1;
     border: 1px solid #d6d6d6;
     line-height: 1.2;
-    padding: 4px 8px;
+    padding: 3px 8px;
     border-radius: 5px;
   }
 }
@@ -423,12 +423,15 @@
 
   
   .card-content {
-  margin: 0 0 clamp(72px, 8vw, 120px);
-}
+    margin: 0 0 clamp(72px, 8vw, 120px);
+  }
 
   .tag-group{
     font-size: 12px;
     line-height: 20px;
+    span{
+      padding: 4px 8px;
+    }
   }
 
   .circle-arrow{

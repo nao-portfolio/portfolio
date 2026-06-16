@@ -1567,7 +1567,7 @@ footer {
   color: #a1a1a1;
   border: 1px solid #d6d6d6;
   line-height: 1.2;
-  padding: 4px 8px;
+  padding: 3px 8px;
   border-radius: 5px;
 }
 
@@ -1593,6 +1593,9 @@ footer {
   .tag-group {
     font-size: 12px;
     line-height: 20px;
+  }
+  .tag-group span {
+    padding: 4px 8px;
   }
   .circle-arrow {
     width: 40px;
