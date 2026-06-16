@@ -961,6 +961,7 @@ body.js-inited .fade-in.visible {
   }
   .KV .KV-img-short img {
     top: 392px !important;
+    width: 83%;
   }
   .KV .KV-img-long {
     display: none;
