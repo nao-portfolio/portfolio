@@ -346,6 +346,51 @@ header,
     top: 0;
   }
 }
+.card-content .tag {
+  padding: 0 0 0 32px;
+}
+.card-content .tag::before {
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  top: -2px;
+  left: 0;
+  content: "";
+}
+.card-content .tag.web::before {
+  background: url(../img/menu-icon-work-active.svg);
+  background-size: 100% 100%;
+}
+.card-content .tag.app::before {
+  background: url(../img/icon-app.svg);
+  background-size: 100% 100%;
+}
+
+.section-title .category .web,
+.section-title .category .app {
+  position: relative;
+  padding: 0 0 0 32px;
+}
+.section-title .category .web::before,
+.section-title .category .app::before {
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  top: -2px;
+  left: 0;
+  content: "";
+}
+.section-title .category .web::before {
+  background: url(../img/menu-icon-work-active.svg);
+  background-size: 100% 100%;
+}
+.section-title .category .app::before {
+  background: url(../img/icon-app.svg);
+  background-size: 100% 100%;
+}
+
 /* --------------------------------------------------
    共通 END
 =====================================================*/
@@ -1509,6 +1554,32 @@ footer {
   font-size: 10px;
   display: block;
   margin-bottom: 4px;
+  position: relative;
+  /*padding: 0 0 0 32px;
+  &::before {
+    position: absolute;
+    display: block;
+    width: 24px;
+    height: 24px;
+    top: -2px;
+    left: 0;
+    content: "";
+
+  }*/
+}
+.card-content {
+  /*.tag.web{
+      &::before {
+        background: url(../img/menu-icon-work-active.svg);
+        background-size: 100% 100%;
+      }
+    }
+    .tag.app{
+      &::before {
+        background: url(../img/icon-app.svg);
+        background-size: 100% 100%;
+      }
+    }*/
 }
 .card-content .title {
   font-size: 16px;
@@ -1564,7 +1635,7 @@ footer {
 .tag-group span {
   margin: 0 8px 8px 0;
   display: inline-block;
-  color: #a1a1a1;
+  color: #36373B;
   border: 1px solid #d6d6d6;
   line-height: 1.2;
   padding: 3px 8px;
@@ -1590,8 +1661,11 @@ footer {
   .card-content {
     margin: 0 0 clamp(72px, 8vw, 120px);
   }
+  .card-content .tag {
+    margin-bottom: 16px;
+  }
   .tag-group {
-    font-size: 12px;
+    font-size: 10px;
     line-height: 20px;
   }
   .tag-group span {

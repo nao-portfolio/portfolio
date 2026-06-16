@@ -346,6 +346,51 @@ header,
     top: 0;
   }
 }
+.card-content .tag {
+  padding: 0 0 0 32px;
+}
+.card-content .tag::before {
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  top: -2px;
+  left: 0;
+  content: "";
+}
+.card-content .tag.web::before {
+  background: url(../img/menu-icon-work-active.svg);
+  background-size: 100% 100%;
+}
+.card-content .tag.app::before {
+  background: url(../img/icon-app.svg);
+  background-size: 100% 100%;
+}
+
+.section-title .category .web,
+.section-title .category .app {
+  position: relative;
+  padding: 0 0 0 32px;
+}
+.section-title .category .web::before,
+.section-title .category .app::before {
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  top: -2px;
+  left: 0;
+  content: "";
+}
+.section-title .category .web::before {
+  background: url(../img/menu-icon-work-active.svg);
+  background-size: 100% 100%;
+}
+.section-title .category .app::before {
+  background: url(../img/icon-app.svg);
+  background-size: 100% 100%;
+}
+
 /* --------------------------------------------------
    共通 END
 =====================================================*/
@@ -1287,6 +1332,7 @@ footer {
 .section-title .category {
   display: flex;
   align-items: center;
+  margin: 8px 0 0 0;
 }
 .section-title .category span {
   display: flex;
@@ -1305,6 +1351,9 @@ footer {
 
 /* ▼ 764px以上だったら */
 @media (min-width: 764px) {
+  .section-title .category {
+    margin: 0;
+  }
   .section-title .category span {
     font-size: 16px;
   }
