@@ -1049,12 +1049,7 @@ body.js-inited .fade-in.visible {
     }
   }
 }
-
-/*.ani-home-mv {
-  opacity: 0;
-  transition: opacity .6s ease;
-  transition-delay: var(--ani-delay, 0ms);
-}*/
+/*
 .ani-home-mv {
   opacity: 1;
 }
@@ -1069,8 +1064,16 @@ body.js-inited .ani-home-mv.isView {
 }
 .ani-home-mv.isView {
   opacity: 1;
+}*/
+.ani-home-mv {
+  opacity: 0;
+  transition: opacity .7s ease;
+  will-change: opacity;
 }
 
+.ani-home-mv.isView {
+  opacity: 1;
+}
 
 /* reduce motion 配慮 */
 @media (prefers-reduced-motion: reduce) {
