@@ -975,6 +975,11 @@
   margin-bottom: 168px;
   .p-group{
     padding: 0 40px;
+    h4{
+      font-size: 14px;
+      font-weight: 600;
+      margin: 24px 0 8px;
+    }
     p{
       font-size: 12px;
       line-height: 28px;
@@ -997,7 +1002,7 @@
       font-size: 14px;
     }
     p.NDA_text{
-      margin: 16px 0 0;
+      //margin: 16px 0 0;
     }
   }
 }

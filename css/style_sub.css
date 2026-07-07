@@ -2079,6 +2079,11 @@ footer {
 .brief_overview_area .p-group {
   padding: 0 40px;
 }
+.brief_overview_area .p-group h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 24px 0 8px;
+}
 .brief_overview_area .p-group p {
   font-size: 12px;
   line-height: 28px;
@@ -2097,9 +2102,6 @@ footer {
   }
   .brief_overview_area .p-group p {
     font-size: 14px;
-  }
-  .brief_overview_area .p-group p.NDA_text {
-    margin: 16px 0 0;
   }
 }
 /* --------------------------------------------------
