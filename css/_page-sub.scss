@@ -976,7 +976,7 @@
   .p-group{
     padding: 0 40px;
     h4{
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 600;
       margin: 24px 0 8px;
     }
@@ -998,6 +998,9 @@
   .brief_overview_area{
   .p-group{
     padding: 0;
+    h4{
+      font-size: 14px;
+    }
     p{
       font-size: 14px;
     }
